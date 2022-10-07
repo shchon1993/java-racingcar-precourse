@@ -1,8 +1,11 @@
 package racingcar.model;
 
+import racingcar.utils.exceptionMessage;
+
 public class racingcarMoveCount {
 
     private final String moveCount;
+    private exceptionMessage message = new exceptionMessage();
 
     public racingcarMoveCount(String moveCount) {
         checkNumeicMoveCount(moveCount);
@@ -18,7 +21,7 @@ public class racingcarMoveCount {
     }
     public void checkNumeicMoveCount(String strMoveCount){
         if(!isNumeric(strMoveCount))
-            throw new IllegalArgumentException("숫자만 입력해 주세요");
+            throw new IllegalArgumentException(message.inputOnlyNumber());
     }
 
     public String getMoveCount() {

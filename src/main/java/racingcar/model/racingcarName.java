@@ -1,7 +1,10 @@
 package racingcar.model;
 
+import racingcar.utils.exceptionMessage;
+
 public class racingcarName {
     private final String carName;
+    private exceptionMessage message = new exceptionMessage();
 
     public racingcarName(String carName) {
         validationcheckNameLength(carName);
@@ -9,9 +12,9 @@ public class racingcarName {
     }
     private void validationcheckNameLength(String carName) {
         if(carName.length() == 0)
-            throw new IllegalArgumentException("자동차 이름을 입력하지 않았습니다.");
+            throw new IllegalArgumentException(message.noInputCarName());
         if(carName.length()>5)
-            throw new IllegalArgumentException("자동차 이름의 길이가 5를 넘었습니다.");
+            throw new IllegalArgumentException(message.InputCarName5Over());
     }
     public String getCarName() {
         return carName;
