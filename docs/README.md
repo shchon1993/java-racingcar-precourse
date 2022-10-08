@@ -1,4 +1,4 @@
-# 2주차 미션 - 자동차 게임 (ver. 22.10.08)
+# 2주차 미션 - 자동차 게임 (ver2. 22.10.08)
 
 # 구현 기능 목록
 ### 1.프로젝트 구조 잡기
@@ -36,7 +36,7 @@
 * 아래는 변경 사항
 
 ## 변경사항(2022.10.08)
-1. 기존 racingcarName, racingcarMoveCount, racingcarsNames 클래스는 그대로 유지
+1. 기존 racingcarName, racingcarMoveCount, racingcarsNames,racingcarposition 클래스는 그대로 유지
 2. 기존 racingcarName -> racingCar로 변경, 자동차 이름을 받아 처리하는 역할은 동일하나 해당 클래스내에서 position 변수 생성하여 기존 racingcarposition클래스 메소드 대체
 3. 기존 racingcarsNames -> racingCars로 변경 수행 메소드 변경없이 똑같음
 4. 기존 racingCar, racingCarCurrentResult, racingcarposition 클래스 삭제
