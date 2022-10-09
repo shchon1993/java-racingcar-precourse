@@ -11,8 +11,8 @@ public class inputOutputMessage {
     public void executionMessage(){
         System.out.println("실행 결과");
     }
-    public void outputMessage(){
-        System.out.print("최종 우승자 : ");
+    public String outputMessage(){
+        return "최종 우승자 : ";
     }
 
 

@@ -12,6 +12,7 @@ public class racingcarController {
         racingcarService.inputracingCars();
         racingcarService.inputracingCount();
         play();
+        racingcarService.racingWinner();
     }
 
     public void play(){
