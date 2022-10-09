@@ -6,10 +6,11 @@ public class racingcarPosition {
     private exceptionMessage message = new exceptionMessage();
 
 
-    private final int position;
+
+    private int position;
     private final String Move_position = "-";
     private final int moveCount = 1;
-    public racingcarPosition(final int position) {
+    public racingcarPosition(int position) {
         validationcheckPositionNegative(position);
         this.position = position;
     }
@@ -23,8 +24,14 @@ public class racingcarPosition {
         return position;
     }
 
-    public racingcarPosition move(){
-        return new racingcarPosition(position + moveCount);
+    /* public racingcarPosition move(){
+        System.out.println("move(): " + (position + moveCount));
+        return new racingcarPosition((position + moveCount));
+    }
+
+    */
+    public void setPosition(int position) {
+        this.position = position;
     }
 
     @Override
