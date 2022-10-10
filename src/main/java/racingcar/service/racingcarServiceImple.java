@@ -32,6 +32,7 @@ public class racingcarServiceImple implements racingcarService{
     }
     public void inputracingCars(){
         try{
+            car = new ArrayList<>();
             inputracingCarNameCheck();
             inputracingCarNameAdd();
         }
