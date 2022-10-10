@@ -13,75 +13,79 @@ public class racingcarServiceImple implements racingcarService{
     private List<racingCar> car = new ArrayList<>();
     private racingcarMoveCount moveCount;
     private racingCars cars;
-
     private inputOutputMessage message = new inputOutputMessage();
     private exceptionMessage exceptionMessage = new exceptionMessage();
     private String winner = "";
-
-
-    public void inputracingCars(){
+    private String[] carNamesArr;
+    private final int minRandomNumber = 0;
+    private final int maxRandomNumber = 9;
+    private final int forwardRandomNumber = 4;
+    public void inputracingCarNameCheck(){
         message.inputNameMessage();
-        try {
-            String[] carNamesArr = Console.readLine().split(",");
-            for(String carName : carNamesArr){
-                car.add(new racingCar(new racingcarName(carName),new racingcarPosition(0)));
-            }
-            cars = new racingCars(car);
+        carNamesArr = Console.readLine().split(",");
+    }
+    public void inputracingCarNameAdd(){
+        for(String carName : carNamesArr){
+            car.add(new racingCar(new racingcarName(carName)));
+        }
+        cars = new racingCars(car);
+    }
+    public void inputracingCars(){
+        try{
+            inputracingCarNameCheck();
+            inputracingCarNameAdd();
         }
         catch(IllegalArgumentException e){
-            System.out.println(e.getMessage());
+            System.out.println(exceptionMessage.InputCarNameWrong());
+            inputracingCars();
         }
     }
-    public void validationNameCheck(String carNameCheck){
-        if(carNameCheck.length() == 0)
-            throw new IllegalArgumentException(exceptionMessage.noInputCarName());
-        if(carNameCheck.length()>5)
-            throw new IllegalArgumentException(exceptionMessage.InputCarName5Over());
-    }
     public void inputracingCount(){
-        message.inputCountMessage();
-        moveCount = new racingcarMoveCount(Console.readLine());
+        try {
+            message.inputCountMessage();
+            moveCount = new racingcarMoveCount(Console.readLine());
+        }
+        catch (IllegalArgumentException e){
+            System.out.println(exceptionMessage.InputNumNegativeAndUnderZero());
+            inputracingCount();
+        }
     }
-
     public boolean createRandomnumber(){
-        int randomNumber = Randoms.pickNumberInRange(0,9);
-        if(randomNumber >= 4)
+        int randomNumber = Randoms.pickNumberInRange(minRandomNumber,maxRandomNumber);
+        if(randomNumber >= forwardRandomNumber)
             return true;
         return false;
     }
-
-    public void inputracingPosition(){
-       for(int i = 0 ; i<cars.getCars().size();i++) {
-           if(createRandomnumber()) {
-               int temp = cars.getCars().get(i).getPositionClass().getPosition();
-               cars.getCars().get(i).getPositionClass().setPosition(temp+1);
-               //System.out.println(car.get(i).getPositionClass().getPosition());
-           }
-       }
-    }
-
-    public void printResult(){
-        for(int i = 0 ; i<cars.getCars().size();i++) {
-           System.out.println(cars.getCars().get(i).getCarNameClass().getCarName()+ " : " + cars.getCars().get(i).getPositionClass());
+    public void createRandomnumberAddListCar(List<racingCar> listCar, int idx){
+        if(createRandomnumber()) {
+            listCar.get(idx).getPositionClass().move();
         }
     }
-
+    public  List<racingCar> inputracingPosition(){
+       List<racingCar> listCar = cars.getCars();
+       for(int i = 0 ; i<listCar.size();i++) {
+           createRandomnumberAddListCar(listCar, i);
+       }
+       return listCar;
+    }
     public int getMoveCount(){
         return Integer.parseInt(moveCount.getMoveCount());
     }
-
-    public void racingWinner(){
-        int MaxPosition = Integer.MIN_VALUE;
-        for(int i = 0 ; i<cars.getCars().size();i++) {
-            MaxPosition = Integer.max(MaxPosition,cars.getCars().get(i).getPositionClass().getPosition());
+    public void racingAddWinner(int idx,int position){
+        List<racingCar> listCar = cars.getCars();
+        if(cars.getCars().get(idx).getPositionClass().getPosition() == position){
+            winner += (listCar.get(idx).getCarNameClass().getCarName()) + ", ";
         }
-        for(int i = 0 ; i<cars.getCars().size();i++) {
-            if(cars.getCars().get(i).getPositionClass().getPosition() == MaxPosition){
-               winner +=  (cars.getCars().get(i).getCarNameClass().getCarName());
-            }
-        }
-
-        System.out.println(message.outputMessage()+winner);
     }
-
+    public String racingWinner(){
+        List<racingCar> listCar = cars.getCars();
+        int MaxPosition = Integer.MIN_VALUE;
+        for(int i = 0 ; i<listCar.size();i++) {
+            MaxPosition = Integer.max(MaxPosition,listCar.get(i).getPositionClass().getPosition());
+        }
+        for(int i = 0 ; i<listCar.size();i++) {
+            racingAddWinner(i,MaxPosition);
+        }
+        return winner.substring(0,winner.length()-2);
+    }
 }
