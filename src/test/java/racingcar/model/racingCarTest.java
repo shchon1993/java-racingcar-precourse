@@ -10,12 +10,11 @@ public class racingCarTest {
         assertThat(car.getPositionClass().getPosition()).isEqualTo(0);
 
     }
-    /*
     @Test
     void 자동차_1대_전진_테스트(){
-        racingCar car = new racingCar(new racingcarName("pobi"), new racingcarPosition(2));
-        assertThat(car.getPositionClass().move()).hasToString("---");
-
+        racingCar car = new racingCar(new racingcarName("pobi"));
+        car.getPositionClass().move();
+        car.getPositionClass().move();
+        assertThat(car.getPositionClass()).hasToString("--");
     }
-     */
 }

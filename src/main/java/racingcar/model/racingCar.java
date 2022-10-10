@@ -1,29 +1,16 @@
 package racingcar.model;
 
 public class racingCar {
-
-
     private racingcarName carName;
-
     private racingcarPosition position;
-
-    public racingCar(racingcarName carName, racingcarPosition position) {
+    public racingCar(racingcarName carName) {
         this.carName = carName;
-        this.position = position;
+        this.position = new racingcarPosition(0);
     }
-
     public racingcarName getCarNameClass() {
         return carName;
-    }
-    public void setCarNameClass(racingcarName carName) {
-        this.carName = carName;
     }
     public racingcarPosition getPositionClass() {
         return position;
     }
-    public void setPositionClass(racingcarPosition position) {
-        this.position = position;
-    }
-
-
 }

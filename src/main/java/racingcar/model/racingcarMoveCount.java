@@ -6,7 +6,6 @@ public class racingcarMoveCount {
 
     private final String moveCount;
     private exceptionMessage message = new exceptionMessage();
-
     public racingcarMoveCount(String moveCount) {
         checkNumeicMoveCount(moveCount);
         validationcheckMoveCountNegative(moveCount);
@@ -26,10 +25,9 @@ public class racingcarMoveCount {
     }
     public void validationcheckMoveCountNegative(String moveCountStr){
         int moveCountCheck = Integer.parseInt(moveCountStr);
-        if(moveCountCheck < 0)
-            throw new IllegalArgumentException(message.InputNumNegative());
+        if(moveCountCheck < 1)
+            throw new IllegalArgumentException(message.InputNumNegativeAndUnderZero());
     }
-
     public String getMoveCount() {
         return moveCount;
     }
