@@ -1,7 +1,6 @@
 package racingcar.utils;
 
 public class inputOutputMessage {
-
     public void inputNameMessage(){
         System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
     }
@@ -14,6 +13,4 @@ public class inputOutputMessage {
     public String outputMessage(){
         return "최종 우승자 : ";
     }
-
-
 }
